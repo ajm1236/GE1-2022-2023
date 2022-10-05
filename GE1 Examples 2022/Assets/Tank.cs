@@ -15,8 +15,10 @@ public class Tank : MonoBehaviour
     void Update()
     {
         float f = Input.GetAxis("Vertical");
+        float g = Input.GetAxis("Horizontal");
         Debug.Log("f: " + f);
-        transform.Translate(0, 0, f * speed * Time.deltaTime);
+        Debug.Log("g: " + g);
+        transform.Translate(g * speed * Time.deltaTime, 0, f * speed * Time.deltaTime);
 
     }
 }
