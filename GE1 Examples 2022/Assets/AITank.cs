@@ -61,8 +61,23 @@ public class AITank : MonoBehaviour
         transform.LookAt(waypoints[current]);
         transform.Translate(0, 0, speed * Time.deltaTime);
 
-        
-    }
+        Vector3 front_back = player.position - transform.position;
+        float dot = Vector3.Dot(transform.forward, front_back);
+        if (dot > 0)
+        {
+            GameManager.Log("Tank is in front!");
+        }
+        else
+        {
+            GameManager.Log("Tank is behind!");
+        }
 
+        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+        if (angle > 45 && 0 < dot && dot < 10)
+        {
+            GameManager.Log("Inside FOV and in range!");
+        }
+
+    }
 
 }
