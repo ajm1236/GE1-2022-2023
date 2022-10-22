@@ -7,7 +7,7 @@ public class AITank : MonoBehaviour
     public List<Vector3> waypoints;
     public int count = 5;
     public float radius = 5;
-
+    public Transform player;
     public float speed;
 
 
@@ -60,5 +60,9 @@ public class AITank : MonoBehaviour
         }
         transform.LookAt(waypoints[current]);
         transform.Translate(0, 0, speed * Time.deltaTime);
+
+        
     }
+
+
 }
