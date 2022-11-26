@@ -7,6 +7,21 @@ public class PhysicsFactory : MonoBehaviour {
     public GameObject wormPrefab;
     void CreateTower(float radius, int height, int segments, Vector3 point)
     {
+        float teta = (Mathf.PI * 2.0f) / segments;
+        for(int i = 0; i < height; i++)
+        {
+            for(int j = 0; j < segments; j++)
+            {
+                float theta = teta * j + (i * teta * 0.5f);
+                float x = radius * Mathf.Sin(theta);
+                float z = radius * Mathf.Cos(theta) + 10;
+                Vector3 pos = point + new Vector3(x, i, z);
+                GameObject brick = CreateBrick(pos.x, pos.y, pos.z, 1, 1, 1);
+                brick.transform.rotation = Quaternion.AngleAxis(theta * Mathf.Rad2Deg, Vector3.up);
+                brick.GetComponent<Renderer>().material.color = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 3, 1.0f);
+            }
+        }
+
     }
 
     
@@ -190,5 +205,6 @@ public class PhysicsFactory : MonoBehaviour {
                 CreateWorm(p, q);
             }
         }
+
     }
 }
